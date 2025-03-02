@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>HomePage</title>
+        <style>
+            select, option {
+                padding: 10px;
+                font-size: 16px;
+            }
+        </style>
     </head>
     <body>
         <h1>HomePage</h1>
@@ -16,5 +22,14 @@
         Click here:
         <br>
         <a href="Topic page.html" target="_blank">Would you like to learn about Html?</a>
+        <br>
+        <br>
+        <label for="toc">Go to:</label>
+    <select id="toc" onchange="window.location = this.value;">
+        <option value="#">Select a page</option>
+        <option value="Topic page.html">Topic page Page</option>
+        <option value="Topic page2.html">Topic page2 Page</option>
+        <option value="References and resources page.html">Reference and resources Page</option>
+    </select>
     </body>
 </html>
