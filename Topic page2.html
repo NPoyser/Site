@@ -31,5 +31,14 @@ and science of creating the user-facing part of a website or web app. It's what 
         <a href="Topic page.html">Back to Part 1</a>
         <br>
         <a href="References and resources page.html" target="_blank">References and resources</a>
+        <br>
+        <br>
+        <label for="toc">Go to:</label>
+    <select id="toc" onchange="window.location = this.value;">
+        <option value="#">Select a page</option>
+        <option value="References and resources page.html">References and resources Page</option>
+        <option value="Topic page.html">Topic Page</option>
+        <option value="index.html">Home Page</option>
+    </select>
     </body>
 </html>
