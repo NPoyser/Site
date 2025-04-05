@@ -12,6 +12,7 @@
         </style>
     </head>
     <body>
+        <div id="navbar"></div>
         <h1>Html Part 1</h1>
         <hr>
         <p>
@@ -32,5 +33,13 @@
     </select>
         <br>
         <p>&copy; 2025 Npoyser.github.io/Site/</p>
+        <script>
+            fetch('bar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
     </body>
 </html>
