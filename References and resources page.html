@@ -12,6 +12,7 @@
         </style>
     </head>
     <body>
+        <div id="navbar"></div>
         <h1>
             References and resources
         </h1>
@@ -34,6 +35,14 @@
         <option value="Topic page2.html">Page 2</option>
         <option value="index.html">Home Page</option>
     </select>
+        <script>
+            fetch('bar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
     </body>
     <br>
     <p>&copy; 2025 Npoyser.github.io/Site/</p>
