@@ -40,6 +40,25 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('navbar').innerHTML = data;
+                const toggleButton = document.querySelector('.toggle-btn');
+
+                // Ensure the button exists before adding the event listener
+                if (toggleButton) {
+                    toggleButton.addEventListener('click', function() {
+                        const body = document.body;
+
+                        // Toggle light/dark mode
+                        body.classList.toggle('dark-mode');
+                        body.classList.toggle('light-mode');
+
+                        // Update the button icon based on the mode
+                        if (body.classList.contains('dark-mode')) {
+                            toggleButton.innerHTML = '🌞☀️';  
+                        } else {
+                            toggleButton.innerHTML = '🌙❄️';  
+                        }
+                    });
+                }
                 })
                 .catch(error => console.error('Error loading navbar:', error));
         </script>
