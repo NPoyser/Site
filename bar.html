@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Navbar</title>
     <style>
+        /* Light Mode Styles */
+        .light-mode {
+            background-color: #fff;  /* Light background for light mode */
+            color: #222;  /* Dark text for light mode */
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #222;  /* Dark background for dark mode */
+            color: #ddd;  /* Light text for dark mode */
+        }
         /* Remove default body margins and padding */
         body {
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+
         }
 
         /* Navigation Bar */
@@ -36,9 +49,25 @@
             color: #222; /* Dark text on hover */
             border-radius: 5px; /* Rounded hover effect */
         }
+        /* Toggle Button Style */
+        .toggle-btn {
+            position: absolute; /* Position inside the navbar */
+            top: 10px;
+            right: 20px;
+            padding: 8px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
-<body>
+<body class="light-mode">
 
     <nav>
         <a href="index.html">HomePage</a>
@@ -46,7 +75,24 @@
         <a href="Topic page2.html">Html Part 2</a>
         <a href="quiz.html">Html Quiz</a>
         <a href="References and resources page.html">References and resources</a>
-    </nav>
 
+        <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+    </nav>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const button = document.querySelector('.toggle-btn');
+
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            // Change the icon based on the current mode
+            if (body.classList.contains('dark-mode')) {
+                button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+            } else {
+                button.innerHTML = '🌙❄️';  // Moon icon for light mode
+            }
+        }
+    </script>
 </body>
 </html>
