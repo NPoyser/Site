@@ -17,7 +17,7 @@ body {
 .content {
     /*max-width: 800px; */
     padding: 20px; 
-    text-align: center;
+    text-align: left;
     max-width: 1200px;  /* Increase max-width to make it wider */
     width: 90%;         /* Let the content take up 90% of the page */
     height: 600px;
