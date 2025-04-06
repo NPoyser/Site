@@ -293,6 +293,17 @@
               document.getElementById("restartButton").style.display = "none";
             }
         </script>
+            <br>
+            <br>
+            <label for="toc">Table of contents:</label>
+        <select id="toc" onchange="window.location = this.value;">
+            <option value="#">Select a page</option>
+            <option value="Topic page.html">Page 1</option>
+            <option value="Topic page2.html">Page 2</option>
+            <option value="index.html">Home Page</option>
+            <option value="References and resources.html">References and resources Page </option>
+
+        </select>
 
         <script>
             fetch('bar.html')
