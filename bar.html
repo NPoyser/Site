@@ -28,10 +28,11 @@
         nav {
             background-color: #222;  /* Dark gray background */
             width: 100%; /* Make it full width */
-            padding: 10px 0;
+            padding: 10px 20px;
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -39,7 +40,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            padding: 12px 20px;
+            padding: 12px 15px;
             transition: all 0.3s ease-in-out;
         }
 
@@ -51,20 +52,37 @@
         }
         /* Toggle Button Style */
         .toggle-btn {
-            position: absolute; /* Position inside the navbar */
+            position: absolute;
             top: 10px;
             right: 20px;
-            padding: 8px 15px;
             background-color: #333;
             color: #fff;
             border: none;
+            padding: 8px 12px;
+            font-size: 18px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .toggle-btn:hover {
             background-color: #555;
         }
+    
+        /* Responsive */
+        @media (max-width: 600px) {
+        nav {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            position: static;
+            margin-top: 10px;
+            order: 99; /* push to bottom in mobile layout */
+        }
+    }
     </style>
 </head>
 <body class="light-mode">
