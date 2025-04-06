@@ -3,10 +3,296 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>QUIZ</title>
+        <title>Html Quiz</title>
+        <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 40px 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              min-height: 100vh;
+            }
+        
+            h1 {
+              text-align: center;
+              font-size: 2em;
+              margin-bottom: 20px;
+            }
+        
+            form {
+              width: 100%;
+              max-width: 700px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+        
+            .question {
+              margin-bottom: 25px;
+              width: 100%;
+              max-width: 600px;
+            }
+        
+            label {
+              display: block;
+              margin: 6px 0;
+              padding: 6px 12px;
+              border-radius: 5px;
+              transition: 0.3s;
+            }
+        
+            input[type="radio"],
+            input[type="checkbox"] {
+              margin-right: 8px;
+            }
+        
+            .correct {
+              background-color: rgba(0, 255, 0, 0.1);
+              border-left: 4px solid green;
+            }
+        
+            .incorrect {
+              background-color: rgba(255, 0, 0, 0.1);
+              border-left: 4px solid red;
+            }
+        
+            .result {
+              display: none;
+              text-align: center;
+              margin-top: 40px;
+              font-size: 2rem;
+              font-weight: bold;
+            }
+        
+            .result.pass {
+              color: green;
+            }
+        
+            .result.fail {
+              color: red;
+            }
+        
+            button {
+              padding: 10px 20px;
+              margin: 10px;
+              border: none;
+              border-radius: 5px;
+              font-weight: bold;
+              cursor: pointer;
+              transition: 0.3s;
+            }
+        
+            button[type="submit"] {
+              background-color: #4285F4; /* Blue Submit Button */
+              color: white;
+            }
+        
+            button[type="submit"]:hover {
+              background-color: #357ae8;
+            }
+        
+            button[type="button"] {
+              background-color: #f44336;
+              color: white;
+            }
+        
+            button[type="button"]:hover {
+              background-color: #d32f2f;
+            }
+        
+            .icon {
+              font-weight: bold;
+              margin-left: 5px;
+            }
+        
+            .button-container {
+              display: flex;
+              justify-content: center;
+              margin-top: 20px;
+              width: 100%;
+              flex-direction: column; /* Ensure buttons stack vertically */
+              align-items: center;
+            }
+        
+            /* Style adjustments for radio and checkbox when clicked */
+            input[type="radio"]:checked,
+            input[type="checkbox"]:checked {
+              background-color: #4285F4; /* Blue when selected */
+              color: white;
+            }
+        
+            input[type="radio"]:focus,
+            input[type="checkbox"]:focus {
+              outline: none;
+            }
+        
+            .question {
+              text-align: center; /* Center the questions */
+            }
+        </style>
     </head>
     <body>
         <div id="navbar"></div>
+        <body>
+          <h1>HTML Quiz</h1>
+        
+          <form id="quizForm">
+            <div class="question" data-q="q1">
+              <p>1. What does HTML stand for?</p>
+              <label><input type="radio" name="q1" value="a"> Hype Texting Mark-up Language</label>
+              <label><input type="radio" name="q1" value="b"> Hypertext Markup Language</label>
+              <label><input type="radio" name="q1" value="c"> Hearty Talk Matching Laughter</label>
+            </div>
+        
+            <div class="question" data-q="q2">
+              <p>2. The hypertext markup language uses markup symbols/tags(Ex. body, /body, p, /p, br, h1, /h1). What do these symbols/tags appear between?</p>
+              <label><input type="radio" name="q2" value="a"> ()</label>
+              <label><input type="radio" name="q2" value="b"> &lt; &gt;</label>
+              <label><input type="radio" name="q2" value="c"> {}</label>
+            </div>
+        
+            <div class="question" data-q="q3">
+              <p>3. HTML is useful because:</p>
+              <label><input type="radio" name="q3" value="a"> It serves as a foundation that holds the content and design elements together</label>
+              <label><input type="radio" name="q3" value="b"> HTML uses elements or tags</label>
+              <label><input type="radio" name="q3" value="c"> Display text, images, and audio</label>
+            </div>
+        
+            <div class="question" data-q="q4">
+              <p>4. HTML was developed in the late 1990s by ________.</p>
+              <input type="text" name="q4" />
+            </div>
+        
+            <div class="question" data-q="q5">
+              <p>5. What are some advantages of using HTML? (Choose all that apply)</p>
+              <label><input type="checkbox" name="q5" value="a"> It is simple to use and understand.</label>
+              <label><input type="checkbox" name="q5" value="b"> Its versatility allows it to be used to create websites on the web and mobile app development, while using other web technologies such as CSS and JavaScript.</label>
+              <label><input type="checkbox" name="q5" value="c"> HTML is used on 100% of all websites.</label>
+              <label><input type="checkbox" name="q5" value="d"> It is well supported; relevant tutorials are easy to find.</label>
+            </div>
+        
+            <div class="button-container">
+              <button type="submit" id="submitButton"> Submit</button>
+              <div id="result"></div>
+              <button type="button" id="restartButton" style="display: none;" onclick="restartQuiz()"> Restart</button>
+            </div>
+          </form>
+        
+          <script>
+            const correctAnswers = {
+              q1: "b",
+              q2: "b",
+              q3: "a",
+              q4: "tim berners-lee",
+              q5: ["a", "b", "d"]
+            };
+        
+            document.getElementById("quizForm").addEventListener("submit", function (e) {
+              e.preventDefault();
+        
+              let score = 0;
+              const resultDiv = document.getElementById("result");
+              resultDiv.innerHTML = "";
+              resultDiv.className = "result";
+              resultDiv.style.display = "block";
+        
+              // Reset visual feedback
+              document.querySelectorAll("label").forEach(label => {
+                label.classList.remove("correct", "incorrect");
+                const icon = label.querySelector(".icon");
+                if (icon) icon.remove();
+              });
+        
+              // Q1-3
+              for (let i = 1; i <= 3; i++) {
+                const question = document.querySelector(`[data-q="q${i}"]`);
+                const selected = question.querySelector(`input[name="q${i}"]:checked`);
+                const correctValue = correctAnswers[`q${i}`];
+        
+                if (selected) {
+                  const label = selected.closest("label");
+                  if (selected.value === correctValue) {
+                    label.classList.add("correct");
+                    label.innerHTML += `<span class="icon">✔</span>`;
+                    score++;
+                  } else {
+                    label.classList.add("incorrect");
+                    label.innerHTML += `<span class="icon">✘</span>`;
+                  }
+                }
+              }
+        
+              // Q4
+              const q4 = document.querySelector('input[name="q4"]');
+              const q4Value = q4.value.trim().toLowerCase();
+        
+              if (q4Value === correctAnswers.q4 || q4Value === "tim berners lee") {
+                q4.style.backgroundColor = "rgba(0, 255, 0, 0.1)";
+                score++;
+              } else {
+                q4.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+              }
+        
+              // Q5
+              const q5Inputs = document.querySelectorAll('input[name="q5"]');
+              const selectedQ5 = Array.from(q5Inputs).filter(cb => cb.checked).map(cb => cb.value);
+              const correctQ5 = correctAnswers.q5;
+        
+              const isCorrectQ5 = selectedQ5.length === correctQ5.length &&
+                                  correctQ5.every(val => selectedQ5.includes(val));
+        
+              q5Inputs.forEach(cb => {
+                const label = cb.closest("label");
+                if (correctQ5.includes(cb.value) && cb.checked) {
+                  label.classList.add("correct");
+                  label.innerHTML += `<span class="icon">✔</span>`;
+                } else if (!correctQ5.includes(cb.value) && cb.checked) {
+                  label.classList.add("incorrect");
+                  label.innerHTML += `<span class="icon">✘</span>`;
+                }
+              });
+        
+              if (isCorrectQ5) score++;
+        
+              // Show Score Only
+              resultDiv.classList.add(score >= 4 ? "pass" : "fail");
+              resultDiv.innerHTML = `Score: ${score}/5<br>${score >= 4 ? "✅ Pass" : "❌ Fail"}`;
+        
+              // Disable all inputs to prevent further changes
+              document.querySelectorAll("input").forEach(input => {
+                input.disabled = true;
+              });
+        
+              // Hide Submit button, show Restart button
+              document.getElementById("submitButton").style.display = "none";
+              document.getElementById("restartButton").style.display = "inline-block";
+            });
+        
+            function restartQuiz() {
+              document.getElementById("quizForm").reset();
+              document.getElementById("result").style.display = "none";
+              document.getElementById("result").innerHTML = "";
+              document.querySelectorAll("label").forEach(label => {
+                label.classList.remove("correct", "incorrect");
+                const icon = label.querySelector(".icon");
+                if (icon) icon.remove();
+              });
+              document.querySelector('input[name="q4"]').style.backgroundColor = "white";
+        
+              // Re-enable inputs after reset
+              document.querySelectorAll("input").forEach(input => {
+                input.disabled = false;
+              });
+        
+              // Hide Restart button, show Submit button
+              document.getElementById("submitButton").style.display = "inline-block";
+              document.getElementById("restartButton").style.display = "none";
+            }
+        </script>
 
         <script>
             fetch('bar.html')
