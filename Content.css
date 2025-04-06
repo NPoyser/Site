@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 /* Reset body margin */
 body {
     max-width: 1200px;  /* Increase max-width to make it wider */
