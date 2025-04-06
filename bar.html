@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Navbar</title>
     <style>
@@ -28,11 +28,6 @@
         nav {
             background-color: #222;  /* Dark gray background */
             width: 100%; /* Make it full width */
-            padding: 10px 20px;
-            /* display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; */
             padding: 10px 0;
             display: flex;
             justify-content: center;
@@ -44,7 +39,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            padding: 12px 15px;
+            padding: 12px 20px;
             transition: all 0.3s ease-in-out;
         }
 
@@ -56,37 +51,20 @@
         }
         /* Toggle Button Style */
         .toggle-btn {
-            position: absolute;
+            position: absolute; /* Position inside the navbar */
             top: 10px;
             right: 20px;
+            padding: 8px 15px;
             background-color: #333;
             color: #fff;
             border: none;
-            padding: 8px 12px;
-            font-size: 18px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
 
         .toggle-btn:hover {
             background-color: #555;
         }
-    
-        /* Responsive */
-        @media (max-width: 600px) {
-        nav {
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .toggle-btn {
-            position: static;
-            margin-top: 10px;
-            order: 99; /* push to bottom in mobile layout */
-        }
-    }
     </style>
 </head>
 <body class="light-mode">
@@ -130,12 +108,13 @@
             if (body.classList.contains('dark-mode')) {
                 button.innerHTML = '🌞☀️';  // Sun icon for dark mode
                 localStorage.setItem('theme', 'dark-mode');
-                console.log("Saved dark mode in localStorage"); // originally to check whether it saved correctly
+                console.log("Saved dark mode in localStorage");
             } else {
                 localStorage.setItem('theme', 'light-mode');
-                console.log("Saved light mode in localStorage"); // originally to check whether it saved correctly
+                console.log("Saved light mode in localStorage");
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
+        }
     </script>
 </body>
 </html>
