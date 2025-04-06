@@ -1,0 +1,26 @@
+/* Reset body margin */
+body {
+    max-width: 1200px;  /* Increase max-width to make it wider */
+    width: 100%;        /* Ensure it takes up full width available */
+    padding: 20px;
+    /*margin: 0;
+    padding: 0; */
+    display: flex;              /* Use flexbox to center */
+    justify-content: center;    /* Horizontally center */
+    align-items: center;        /* Vertically center */
+    height: 100vh;              /* Full viewport height */
+    flex-direction: column; /* Ensures elements are stacked vertically */
+    min-width: 1024px;  /* Prevents content from being too narrow on large screens */
+}
+
+/* Center content div */
+.content {
+    /*max-width: 800px; */
+    padding: 20px; 
+    text-align: center;
+    max-width: 1200px;  /* Increase max-width to make it wider */
+    width: 90%;         /* Let the content take up 90% of the page */
+    height: 600px;
+    box-sizing: border-box;
+    margin: 0 auto;     /* Center it horizontally */
+}
