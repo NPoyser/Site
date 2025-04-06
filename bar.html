@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Navbar</title>
     <style>
@@ -101,6 +101,24 @@
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
     </nav>
     <script>
+        // Check the user's theme preference on page load and saves/remembers it
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme from localStorage: ", savedTheme); // Debugging
+
+            if (savedTheme) {
+                document.body.classList.remove('light-mode', 'dark-mode');
+                document.body.classList.add(savedTheme);
+                
+                // Update the button icon based on the saved theme
+                const button = document.querySelector('.toggle-btn');
+                if (savedTheme === 'dark-mode') {
+                    button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                } else {
+                    button.innerHTML = '🌙❄️';  // Moon icon for light mode
+                }
+            }
+        };
         function toggleMode() {
             const body = document.body;
             const button = document.querySelector('.toggle-btn');
@@ -111,10 +129,13 @@
             // Change the icon based on the current mode
             if (body.classList.contains('dark-mode')) {
                 button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                localStorage.setItem('theme', 'dark-mode');
+                //console.log("Saved dark mode in localStorage"); < originally to check whether it saved correctly
             } else {
+                localStorage.setItem('theme', 'light-mode');
+                //console.log("Saved light mode in localStorage"); < originally to check whether it saved correctly
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
-        }
     </script>
 </body>
 </html>
