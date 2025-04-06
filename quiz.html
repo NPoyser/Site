@@ -179,6 +179,8 @@
               <button type="submit" id="submitButton"> Submit</button>
               <div id="result"></div>
               <button type="button" id="restartButton" style="display: none;" onclick="restartQuiz()"> Restart</button>
+              <button id="showAnswersBtn" type="button" style="display:none;" onclick="showAnswers()"> Show Correct Answers</button>
+                <div id="answers" style="display:none; text-align:center; margin-top:20px; font-size:1.1rem;"></div>  
             </div>
           </form>
         
@@ -267,9 +269,10 @@
                 input.disabled = true;
               });
         
-              // Hide Submit button, show Restart button
+              // Hide Submit button, show Restart button and Answer button
               document.getElementById("submitButton").style.display = "none";
               document.getElementById("restartButton").style.display = "inline-block";
+              document.getElementById("showAnswersBtn").style.display = "inline-block";  
             });
         
             function restartQuiz() {
@@ -288,10 +291,28 @@
                 input.disabled = false;
               });
         
-              // Hide Restart button, show Submit button
+              // Hide Restart button and Answer button, show Submit button
               document.getElementById("submitButton").style.display = "inline-block";
               document.getElementById("restartButton").style.display = "none";
+              document.getElementById("showAnswersBtn").style.display = "none";
+              const answerDiv = document.getElementById("answers");
+                if (answerDiv) {
+                    answerDiv.style.display = "none";
+                    answerDiv.innerHTML = "";
+                }  
             }
+            function showAnswers() {
+              const answersDiv = document.getElementById("answers");
+              answersDiv.innerHTML = `
+                ✅ <strong>Correct Answers:</strong><br>
+                Q1: b<br>
+                Q2: b<br>
+                Q3: a<br>
+                Q4: Tim Berners-Lee<br>
+                Q5: a, b, d
+                  `;
+                answersDiv.style.display = "block";
+            }  
         </script>
             <br>
             <br>
