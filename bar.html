@@ -79,42 +79,42 @@
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
     </nav>
     <script>
-        // Now we define the toggleMode function
+        // Check the user's theme preference on page load and saves/remembers it
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme from localStorage: ", savedTheme); // Debugging
+
+            if (savedTheme) {
+                document.body.classList.remove('light-mode', 'dark-mode');
+                document.body.classList.add(savedTheme);
+                
+                // Update the button icon based on the saved theme
+                const button = document.querySelector('.toggle-btn');
+                if (savedTheme === 'dark-mode') {
+                    button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                } else {
+                    button.innerHTML = '🌙❄️';  // Moon icon for light mode
+                }
+            }
+        };
         function toggleMode() {
             const body = document.body;
             const button = document.querySelector('.toggle-btn');
 
-            // Toggle between light and dark mode
             body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
 
             // Change the icon based on the current mode
             if (body.classList.contains('dark-mode')) {
                 button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                localStorage.setItem('theme', 'dark-mode');
+                console.log("Saved dark mode in localStorage");
             } else {
+                localStorage.setItem('theme', 'light-mode');
+                console.log("Saved light mode in localStorage");
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
-
-            // Save the current mode to localStorage
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
-
-        // Check localStorage on page load to maintain the mode
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            const body = document.body;
-
-            // If there is a saved theme, apply it
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-mode');
-                body.classList.remove('light-mode');
-                document.querySelector('.toggle-btn').innerHTML = '🌞☀️'; // Sun icon for dark mode
-            } else {
-                body.classList.add('light-mode');
-                body.classList.remove('dark-mode');
-                document.querySelector('.toggle-btn').innerHTML = '🌙❄️'; // Moon icon for light mode
-            }
-        });
     </script>
 </body>
 </html>
