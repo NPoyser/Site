@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Custom Navbar</title>
   <style>
-    /* Light/Dark Mode */
+    /* Light/Dark */
     .light-mode { background: #fff; color: #222; }
     .dark-mode  { background: #222; color: #ddd; }
     body { margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
@@ -13,112 +13,119 @@
     /* Navbar */
     nav {
       background: #222;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 10px 0;
     }
-    nav a {
+    /* Links container */
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
       color: #ddd;
       text-decoration: none;
       font-weight: bold;
-      padding: 12px 20px;
+      padding: 8px 15px;
       transition: background 0.3s, color 0.3s;
     }
-    nav a:hover {
+    .nav-links a:hover {
       background: #f4f4f4;
       color: #222;
-      border-radius: 5px;
+      border-radius: 4px;
     }
+
+    /* Title container (hidden by default) */
+    .nav-title {
+      display: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ddd;
+      text-align: center;
+      flex: 1;
+    }
+
+    /* Show title, hide links when collapsed */
+    nav.collapsed .nav-links { display: none; }
+    nav.collapsed .nav-title { display: block; }
 
     /* Light/Dark toggle */
     .toggle-btn {
       position: absolute;
       top: 10px; right: 20px;
       background: #333; color: #fff;
-      border: none; padding: 8px 15px;
-      border-radius: 5px; cursor: pointer;
-      transition: background 0.3s;
+      border: none; padding: 6px 12px;
+      border-radius: 4px; cursor: pointer;
     }
     .toggle-btn:hover { background: #555; }
 
-    /* Mobile expand button */
+    /* Expand button (mobile only) */
     .expand-btn {
       display: none;
       position: absolute;
       top: 10px; right: 60px;
       background: transparent; border: none;
-      font-size: 20px; color: #ddd;
-      cursor: pointer;
+      font-size: 20px; color: #ddd; cursor: pointer;
     }
 
-    /* Mobile styles */
     @media (max-width: 768px) {
-      nav { flex-direction: column; }
-      nav a { width: 100%; text-align: center; padding: 10px; }
       .expand-btn { display: block; }
+      /* stack links vertically when shown */
+      .nav-links { flex-direction: column; width: 100%; }
+      .nav-links a { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body class="light-mode">
 
   <nav id="navbar">
-    <a href="index.html">HomePage</a>
-    <a href="Topic page.html">Html Part 1</a>
-    <a href="Topic page2.html">Html Part 2</a>
-    <a href="quiz.html">Html Quiz</a>
-    <a href="References and resources page.html">References and resources</a>
+    <div class="nav-links">
+      <a href="index.html">HomePage</a>
+      <a href="Topic page.html">Html Part 1</a>
+      <a href="Topic page2.html">Html Part 2</a>
+      <a href="quiz.html">Html Quiz</a>
+      <a href="References and resources page.html">References & Resources</a>
+    </div>
+    <div class="nav-title" id="navTitle"></div>
   </nav>
 
-  <!-- Expand button (mobile only) -->
+  <!-- Buttons -->
   <button class="expand-btn" onclick="toggleNavbar()">▼</button>
-  <!-- Light/Dark toggle (desktop & mobile) -->
   <button class="toggle-btn" onclick="toggleMode()">🌙</button>
 
   <script>
-    let originalNavHTML;
+    // Save original page title into nav-title container
+    document.getElementById('navTitle').textContent = document.title;
 
+    // Theme toggle
     window.addEventListener('DOMContentLoaded', () => {
-      // Save original navbar
-      originalNavHTML = document.getElementById('navbar').innerHTML;
-
-      // Restore theme
       const saved = localStorage.getItem('theme');
       if (saved) {
         document.body.classList.remove('light-mode','dark-mode');
         document.body.classList.add(saved);
-        document.querySelector('.toggle-btn').textContent =
-          (saved === 'dark-mode' ? '☀️' : '🌙');
+        document.querySelector('.toggle-btn:not(.expand-btn)')
+          .textContent = saved==='dark-mode'?'☀️':'🌙';
       }
     });
-
     function toggleMode() {
       const body = document.body;
-      const btn  = document.querySelector('.toggle-btn');
+      const btn  = document.querySelector('.toggle-btn:not(.expand-btn)');
       body.classList.toggle('dark-mode');
       body.classList.toggle('light-mode');
-      const isDark = body.classList.contains('dark-mode');
-      btn.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark-mode' : 'light-mode');
+      const dark = body.classList.contains('dark-mode');
+      btn.textContent = dark?'☀️':'🌙';
+      localStorage.setItem('theme', dark?'dark-mode':'light-mode');
     }
 
+    // Navbar toggle
     function toggleNavbar() {
       const nav = document.getElementById('navbar');
       const btn = document.querySelector('.expand-btn');
-      const title = document.title;
-
-      if (nav.innerHTML === originalNavHTML) {
-        // collapse to title
-        nav.innerHTML = `<a href="#">${title}</a>`;
-        btn.textContent = '▲';
-      } else {
-        // expand to full menu
-        nav.innerHTML = originalNavHTML;
-        btn.textContent = '▼';
-      }
+      nav.classList.toggle('collapsed');
+      btn.textContent = nav.classList.contains('collapsed') ? '▲' : '▼';
     }
   </script>
 </body>
