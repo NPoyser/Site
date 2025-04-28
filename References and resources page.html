@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="navbar.css">
         <title>References and resources Page</title>
         <style>
             select, option {
@@ -30,7 +31,7 @@
     </style>
     </head>
     <body>
-        <div id="navbar"></div>
+        <div id="navbar-container"></div>
         <h1>
             References and resources
         </h1>
@@ -53,32 +54,59 @@
         <option value="index.html">Home Page</option>
     </select>
         <script>
-            fetch('bar.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar').innerHTML = data;
-                const toggleButton = document.querySelector('.toggle-btn');
+// Fetch the navbar HTML
+fetch('bar.html')
+  .then(response => response.text())
+  .then(data => {
+    // Inject the fetched navbar HTML into the container
+    document.getElementById('navbar-container').innerHTML = data;
 
-                // Ensure the button exists before adding the event listener
-                if (toggleButton) {
-                    toggleButton.addEventListener('click', function() {
-                        const body = document.body;
+    // Load the navbar CSS if not already loaded
+    if (!document.getElementById('navbar-style')) {
+      const link = document.createElement('link');
+      link.id = 'navbar-style'; // Give it an ID to avoid adding it multiple times
+      link.rel = 'stylesheet';
+      link.href = 'navbar.css'; // This is your navbar style file
+      document.head.appendChild(link);
+    }
 
-                        // Toggle light/dark mode
-                        body.classList.toggle('dark-mode');
-                        body.classList.toggle('light-mode');
+    // Setup the toggle button functionality
+    const toggleButton = document.querySelector('.toggle-btn');
 
-                        // Update the button icon based on the mode
-                        if (body.classList.contains('dark-mode')) {
-                            toggleButton.innerHTML = '🌞☀️';  
-                        } else {
-                            toggleButton.innerHTML = '🌙❄️';  
-                        }
-                    });
-                }
-                })
-                .catch(error => console.error('Error loading navbar:', error));
-        </script>
+    if (toggleButton) {
+      toggleButton.addEventListener('click', function () {
+        const body = document.body;
+
+        // Toggle light/dark mode
+        body.classList.toggle('dark-mode');
+        body.classList.toggle('light-mode');
+
+        // Update button icon and save theme to localStorage
+        if (body.classList.contains('dark-mode')) {
+          toggleButton.innerHTML = '🌞☀️';
+          localStorage.setItem('theme', 'dark-mode');
+        } else {
+          toggleButton.innerHTML = '🌙❄️';
+          localStorage.setItem('theme', 'light-mode');
+        }
+      });
+    }
+
+    // Restore the saved theme when the page reloads
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.body.classList.add(savedTheme);
+      if (toggleButton) {
+        if (savedTheme === 'dark-mode') {
+          toggleButton.innerHTML = '🌞☀️';
+        } else {
+          toggleButton.innerHTML = '🌙❄️';
+        }
+      }
+    }
+  })
+  .catch(error => console.error('Error loading navbar:', error));
+</script>
     </body>
     <br>
     <p>&copy; 2025 Npoyser.github.io/Site/</p>
