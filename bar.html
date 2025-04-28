@@ -66,15 +66,11 @@
             background-color: #555;
         }
         /* For Collapsing Navbar on Mobile */
+        /* Mobile-specific styling for navbar collapse */
         .collapsed {
-            display: none;
+            display: none; /* Hide navbar items initially on mobile */
         }
 
-        .expand-btn {
-            display: none;
-        }
-
-        /* Mobile-only styles */
         @media (max-width: 768px) {
             nav a {
                 display: block; /* Stack navbar links vertically */
@@ -83,8 +79,14 @@
                 padding: 10px;
             }
 
+            /* Hide navbar items until expanded */
+            .collapsed a {
+                display: block; /* Show navbar items when expanded */
+            }
+
+            /* Expand button for mobile */
             .expand-btn {
-                display: block; /* Show the expand/collapse button on mobile */
+                display: block;
                 background-color: transparent;
                 border: none;
                 font-size: 30px;
@@ -92,15 +94,17 @@
                 cursor: pointer;
                 margin: 10px auto;
             }
-
-            nav a {
-                display: none; /* Initially hide navbar links */
-            }
-
-            .collapsed a {
-                display: block; /* Show navbar items when expanded */
-            }
         }
+
+        /* Style for displaying page title */
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ddd;
+            text-align: center;
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 <body class="light-mode">
@@ -115,6 +119,10 @@
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
         <button class="expand-btn" onclick="toggleNavbar()">▼</button>
     </nav>
+
+    <!-- Page title display -->
+    <div class="page-title" id="pageTitle"></div>
+    
     <script>
         // Check the user's theme preference on page load and saves/remembers it
         window.onload = () => {
