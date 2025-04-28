@@ -16,12 +16,12 @@
             background-color: #222;  /* Dark background for dark mode */
             color: #ddd;  /* Light text for dark mode */
         }
+
         /* Remove default body margins and padding */
         body {
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
-
         }
 
         /* Navigation Bar */
@@ -32,6 +32,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            position: relative; /* To position the expand button correctly */
         }
 
         nav a {
@@ -49,6 +50,7 @@
             color: #222; /* Dark text on hover */
             border-radius: 5px; /* Rounded hover effect */
         }
+
         /* Toggle Button Style */
         .toggle-btn {
             position: absolute; /* Position inside the navbar */
@@ -65,13 +67,17 @@
         .toggle-btn:hover {
             background-color: #555;
         }
-        /* For Collapsing Navbar on Mobile */
+
         /* Mobile-specific styling for navbar collapse */
         .collapsed {
             display: none; /* Hide navbar items initially on mobile */
         }
 
         @media (max-width: 768px) {
+            nav {
+                display: block; /* Stack navbar links vertically */
+            }
+
             nav a {
                 display: block; /* Stack navbar links vertically */
                 width: 100%;
@@ -79,9 +85,9 @@
                 padding: 10px;
             }
 
-            /* Hide navbar items until expanded */
-            .collapsed a {
-                display: block; /* Show navbar items when expanded */
+            /* Collapse class to hide navbar items */
+            .collapsed {
+                display: none;
             }
 
             /* Expand button for mobile */
@@ -93,6 +99,7 @@
                 color: #ddd;
                 cursor: pointer;
                 margin: 10px auto;
+                text-align: center;
             }
         }
 
@@ -104,29 +111,35 @@
             text-align: center;
             margin-top: 20px;
         }
-
     </style>
 </head>
 <body class="light-mode">
 
-    <nav>
+    <nav id="navbar">
         <a href="index.html">HomePage</a>
         <a href="Topic page.html">Html Part 1</a>
         <a href="Topic page2.html">Html Part 2</a>
         <a href="quiz.html">Html Quiz</a>
         <a href="References and resources page.html">References and resources</a>
 
+        <!-- Theme Toggle Button -->
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+
+        <!-- Expand button for mobile (▼) -->
         <button class="expand-btn" onclick="toggleNavbar()">▼</button>
     </nav>
 
     <!-- Page title display -->
     <div class="page-title" id="pageTitle"></div>
-    
+
     <script>
         // Check the user's theme preference on page load and saves/remembers it
         window.onload = () => {
             const savedTheme = localStorage.getItem('theme');
+            const currentPageTitle = document.title;  // Get the current page's title
+            const pageTitleElement = document.getElementById('pageTitle');
+            pageTitleElement.textContent = currentPageTitle;  // Display the current page's title
+
             console.log("Saved theme from localStorage: ", savedTheme); // Debugging
 
             if (savedTheme) {
@@ -142,6 +155,8 @@
                 }
             }
         };
+
+        // Function to toggle between light and dark modes
         function toggleMode() {
             const body = document.body;
             const button = document.querySelector('.toggle-btn');
@@ -159,10 +174,11 @@
                 console.log("Saved light mode in localStorage");
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
-        
         }
+
+        // Function to toggle navbar visibility on mobile
         function toggleNavbar() {
-            const navbar = document.querySelector('nav');
+            const navbar = document.getElementById('navbar');
             navbar.classList.toggle('collapsed');  // Toggle the collapse class to hide/show navbar items
             const expandBtn = document.querySelector('.expand-btn');
             if (navbar.classList.contains('collapsed')) {
