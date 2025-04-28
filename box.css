@@ -1,0 +1,9 @@
+.invisible-box {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    top: 60px; /* 60px below top of page */
+    left: 20px;
+    background-color: transparent;
+    pointer-events: none;
+}
