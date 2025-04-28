@@ -57,8 +57,10 @@
                         // Update the button icon based on the mode
                         if (body.classList.contains('dark-mode')) {
                             toggleButton.innerHTML = '🌞☀️';  
+                            localStorage.setItem('theme', 'dark-mode');
                         } else {
                             toggleButton.innerHTML = '🌙❄️';  
+                            localStorage.setItem('theme', 'light-mode');
                         }
                     });
                 }
