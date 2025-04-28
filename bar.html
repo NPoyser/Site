@@ -1,70 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Navbar</title>
-  <style>
-    /* Light Mode Styles */
-    .light-mode {
-      background-color: #fff;
-      color: #222;
-    }
-    /* Dark Mode Styles */
-    .dark-mode {
-      background-color: #222;
-      color: #ddd;
-    }
-    /* Remove default body margins and padding */
-    body {
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Navbar</title>
+    <style>
+        /* Light Mode Styles */
+        .light-mode {
+            background-color: #fff;  /* Light background for light mode */
+            color: #222;  /* Dark text for light mode */
+        }
 
-    /* Navigation Bar */
-    nav {
-      background-color: #222;
-      width: 100%;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      position: relative;
-    }
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #222;  /* Dark background for dark mode */
+            color: #ddd;  /* Light text for dark mode */
+        }
+        /* Remove default body margins and padding */
+        body {
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
 
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 12px 20px;
-      transition: all 0.3s ease-in-out;
-    }
+        }
 
-    nav a:hover {
-      background-color: #f4f4f4;
-      color: #222;
-      border-radius: 5px;
-    }
+        /* Navigation Bar */
+        nav {
+            background-color: #222;  /* Dark gray background */
+            width: 100%; /* Make it full width */
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    /* Toggle Button Style */
-    .toggle-btn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      padding: 8px 15px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .toggle-btn:hover {
-      background-color: #555;
-    }
+        nav a {
+            color: #ddd; /* Light gray text */
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 20px;
+            transition: all 0.3s ease-in-out;
+        }
 
-    /* Mobile-only tweaks (all orientations) */
+        /* Hover Effect */
+        nav a:hover {
+            background-color: #f4f4f4; /* Light gray hover background */
+            color: #222; /* Dark text on hover */
+            border-radius: 5px; /* Rounded hover effect */
+        }
+        /* Toggle Button Style */
+        .toggle-btn {
+            position: absolute; /* Position inside the navbar */
+            top: 10px;
+            right: 20px;
+            padding: 8px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background-color: #555;
+        }
+
+        /* Mobile-only tweaks (all orientations) */
     @media (max-width: 768px) {
       /* Move toggle button over a bit */
       .toggle-btn {
@@ -73,7 +75,7 @@
       }
     }
 
-    /* Portrait on small screens: vertical stack */
+    /* Portrait on small screens: vertical stack (basically only when screen is vertical will this show)*/
     @media only screen and (max-width: 768px) and (orientation: portrait) {
       nav {
         display: flex;           /* use flex */
@@ -88,38 +90,58 @@
         padding: 10px;
       }
     }
-  </style>
+    </style>
 </head>
 <body class="light-mode">
 
-  <nav>
-    <a href="index.html">HomePage</a>
-    <a href="Topic page.html">Html Part 1</a>
-    <a href="Topic page2.html">Html Part 2</a>
-    <a href="quiz.html">Html Quiz</a>
-    <a href="References and resources page.html">References and resources</a>
-    <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
-  </nav>
+    <nav>
+        <a href="index.html">HomePage</a>
+        <a href="Topic page.html">Html Part 1</a>
+        <a href="Topic page2.html">Html Part 2</a>
+        <a href="quiz.html">Html Quiz</a>
+        <a href="References and resources page.html">References and resources</a>
 
-  <script>
-    // Persist theme
-    window.onload = () => {
-      const saved = localStorage.getItem('theme');
-      if (saved) {
-        document.body.classList.remove('light-mode','dark-mode');
-        document.body.classList.add(saved);
-        document.querySelector('.toggle-btn')
-          .textContent = saved==='dark-mode'?'🌞☀️':'🌙❄️';
-      }
-    };
-    function toggleMode() {
-      const body = document.body;
-      const btn = document.querySelector('.toggle-btn');
-      const dark = body.classList.toggle('dark-mode');
-      body.classList.toggle('light-mode');
-      btn.textContent = dark?'🌞☀️':'🌙❄️';
-      localStorage.setItem('theme', dark?'dark-mode':'light-mode');
-    }
-  </script>
+        <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+
+    </nav>
+    <script>
+        // Check the user's theme preference on page load and saves/remembers it
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme from localStorage: ", savedTheme); // Debugging
+
+            if (savedTheme) {
+                document.body.classList.remove('light-mode', 'dark-mode');
+                document.body.classList.add(savedTheme);
+                
+                // Update the button icon based on the saved theme
+                const button = document.querySelector('.toggle-btn');
+                if (savedTheme === 'dark-mode') {
+                    button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                } else {
+                    button.innerHTML = '🌙❄️';  // Moon icon for light mode
+                }
+            }
+        };
+        function toggleMode() {
+            const body = document.body;
+            const button = document.querySelector('.toggle-btn');
+
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            // Change the icon based on the current mode
+            if (body.classList.contains('dark-mode')) {
+                button.innerHTML = '🌞☀️';  // Sun icon for dark mode
+                localStorage.setItem('theme', 'dark-mode');
+                console.log("Saved dark mode in localStorage");
+            } else {
+                localStorage.setItem('theme', 'light-mode');
+                console.log("Saved light mode in localStorage");
+                button.innerHTML = '🌙❄️';  // Moon icon for light mode
+            }
+        }
+        
+    </script>
 </body>
 </html>
