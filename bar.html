@@ -32,6 +32,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap; /* Allow navbar links to wrap for smaller screens */
         }
 
         nav a {
@@ -50,7 +51,7 @@
             border-radius: 5px;
         }
 
-        /* Toggle Button Style */
+        /* Toggle Button Style (Light/Dark) */
         .toggle-btn {
             position: absolute;
             top: 10px;
@@ -67,32 +68,42 @@
             background-color: #555;
         }
 
-        /* Mobile-specific styles */
+        /* For Collapsing Navbar on Mobile */
+        .collapsed {
+            display: none;
+        }
+
+        /* Expand Button for Mobile */
+        .expand-btn {
+            display: none;
+        }
+
+        /* Mobile-only styles */
         @media (max-width: 768px) {
             nav {
-                display: none; /* Hide the navbar by default on mobile */
-                flex-direction: column; /* Stack navbar items vertically */
-                position: fixed;
-                top: 0;
-                left: 0;
-                background-color: #222;
+                display: block;
+            }
+
+            nav a {
+                display: block;
                 width: 100%;
-                height: 100%;
-                z-index: 1000;
+                text-align: center;
+                padding: 10px;
             }
 
-            nav.open {
-                display: flex; /* Show the navbar when it’s open */
+            nav.collapsed a {
+                display: block;
             }
 
-            .toggle-btn.mobile {
-                display: block; /* Show the button on mobile */
-            }
-
-            .toggle-btn.mode {
-                position: absolute;
-                top: 60px;
-                right: 20px;
+            .expand-btn {
+                display: inline-block;
+                font-size: 18px;
+                background: transparent;
+                border: none;
+                color: #ddd;
+                cursor: pointer;
+                padding: 5px 10px;
+                font-weight: bold;
             }
         }
     </style>
@@ -107,58 +118,56 @@
         <a href="References and resources page.html">References and resources</a>
     </nav>
 
-    <!-- Toggle Button for Navbar (Mobile Only) -->
-    <button class="toggle-btn mobile" onclick="toggleNavbar()">&#8595;</button>
+    <!-- Toggle Button for Light/Dark Mode -->
+    <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
 
-    <!-- Toggle Button for Light/Dark Mode (Visible on both Desktop and Mobile) -->
-    <button class="toggle-btn mode" onclick="toggleMode()">🌙❄️</button>
+    <!-- Expand Button for Mobile Navbar -->
+    <button class="expand-btn" onclick="toggleNavbar()">▼</button>
 
     <script>
         // Check the user's theme preference on page load and save it
         window.onload = () => {
             const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme from localStorage: ", savedTheme); // Debugging
+
             if (savedTheme) {
                 document.body.classList.remove('light-mode', 'dark-mode');
                 document.body.classList.add(savedTheme);
 
                 // Update the button icon based on the saved theme
-                const button = document.querySelector('.toggle-btn.mode');
+                const button = document.querySelector('.toggle-btn');
                 if (savedTheme === 'dark-mode') {
-                    button.innerHTML = '🌞☀️'; // Sun icon for dark mode
+                    button.innerHTML = '🌞☀️';  // Sun icon for dark mode
                 } else {
-                    button.innerHTML = '🌙❄️'; // Moon icon for light mode
+                    button.innerHTML = '🌙❄️';  // Moon icon for light mode
                 }
             }
         };
 
-        // Function to toggle the navbar visibility
-        function toggleNavbar() {
-            const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('open');
-            const downButton = document.querySelector('.toggle-btn.mobile');
-            // Change the button icon when the navbar opens and closes
-            if (navbar.classList.contains('open')) {
-                downButton.innerHTML = '&#8593;'; // Up arrow when open
-            } else {
-                downButton.innerHTML = '&#8595;'; // Down arrow when closed
-            }
-        }
-
-        // Function to toggle light/dark mode
         function toggleMode() {
             const body = document.body;
-            const button = document.querySelector('.toggle-btn.mode');
+            const button = document.querySelector('.toggle-btn');
+
             body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
 
             // Change the icon based on the current mode
             if (body.classList.contains('dark-mode')) {
-                button.innerHTML = '🌞☀️'; // Sun icon for dark mode
+                button.innerHTML = '🌞☀️';  // Sun icon for dark mode
                 localStorage.setItem('theme', 'dark-mode');
+                console.log("Saved dark mode in localStorage");
             } else {
                 localStorage.setItem('theme', 'light-mode');
-                button.innerHTML = '🌙❄️'; // Moon icon for light mode
+                console.log("Saved light mode in localStorage");
+                button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
+        }
+
+        function toggleNavbar() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('collapsed');
+            const expandBtn = document.querySelector('.expand-btn');
+            expandBtn.innerHTML = navbar.classList.contains('collapsed') ? '▼' : '▲'; // Toggle between ▼ and ▲
         }
     </script>
 </body>
