@@ -2,118 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Navbar</title>
   <style>
-    /* Light/Dark Mode */
-    .light-mode { background: #fff; color: #222; }
-    .dark-mode  { background: #222; color: #ddd; }
-    body { margin:0; padding:0; transition: background .3s, color .3s; }
+    /* Light Mode Styles */
+    .light-mode {
+      background-color: #fff;
+      color: #222;
+    }
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #222;
+      color: #ddd;
+    }
+    /* Remove default body margins and padding */
+    body {
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-    /* DETAILS/SUMMARY NAV WRAPPER */
-    details#navToggle {
-      position: relative;
-      background: #222;
-    }
-    /* Hide default arrow */
-    details summary::-webkit-details-marker { display: none; }
-    details summary { 
-      cursor: pointer;
-      background: #222; color: #ddd;
-      padding: 10px 20px;
-      font-weight: bold;
-      user-select: none;
-    }
-    /* LINKS */
+    /* Navigation Bar */
     nav {
-      display: none;
-      flex-wrap: wrap;
+      background-color: #222;
+      width: 100%;
+      padding: 10px 0;
+      display: flex;
       justify-content: center;
       gap: 20px;
-      padding: 10px 0;
+      position: relative;
     }
+
     nav a {
       color: #ddd;
       text-decoration: none;
+      font-size: 16px;
       font-weight: bold;
-      padding: 8px 15px;
-      transition: background .3s, color .3s;
+      padding: 12px 20px;
+      transition: all 0.3s ease-in-out;
     }
+
     nav a:hover {
-      background: #f4f4f4;
+      background-color: #f4f4f4;
       color: #222;
-      border-radius: 4px;
+      border-radius: 5px;
     }
 
-    /* When open, show nav */
-    details[open] nav { display: flex; }
-
-    /* Light/Dark toggle button */
+    /* Toggle Button Style */
     .toggle-btn {
       position: absolute;
-      top: 10px; right: 20px;
-      background: #333; color: #fff;
-      border: none; padding: 6px 12px;
-      border-radius: 4px; cursor: pointer;
-      transition: background .3s;
+      top: 10px;
+      right: 20px;
+      padding: 8px 15px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    .toggle-btn:hover { background: #555; }
+    .toggle-btn:hover {
+      background-color: #555;
+    }
 
-    /* Desktop: always show nav, hide summary */
-    @media(min-width:769px) {
-      details summary { display: none; }
-      details nav { display: flex !important; }
-      .toggle-btn { position: absolute; top:10px; right:20px; }
+    /* Mobile-only tweaks (all orientations) */
+    @media (max-width: 768px) {
+      /* Move toggle button over a bit */
+      .toggle-btn {
+        top: 10px;
+        right: 80px;
+      }
+    }
+
+    /* Portrait on small screens: vertical stack */
+    @media only screen and (max-width: 768px) and (orientation: portrait) {
+      nav {
+        display: flex;           /* use flex */
+        flex-direction: column;  /* stack vertically */
+        align-items: center;
+        gap: 10px;
+      }
+      nav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body class="light-mode">
 
-  <details id="navToggle">
-    <summary id="navSummary"></summary>
-    <nav>
-      <a href="index.html">HomePage</a>
-      <a href="Topic page.html">Html Part 1</a>
-      <a href="Topic page2.html">Html Part 2</a>
-      <a href="quiz.html">Html Quiz</a>
-      <a href="References and resources page.html">References & Resources</a>
-    </nav>
-  </details>
-
-  <!-- Theme Toggle -->
-  <button class="toggle-btn" id="themeBtn">🌙</button>
+  <nav>
+    <a href="index.html">HomePage</a>
+    <a href="Topic page.html">Html Part 1</a>
+    <a href="Topic page2.html">Html Part 2</a>
+    <a href="quiz.html">Html Quiz</a>
+    <a href="References and resources page.html">References and resources</a>
+    <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+  </nav>
 
   <script>
-    const details = document.getElementById('navToggle');
-    const summary = document.getElementById('navSummary');
-    const themeBtn = document.getElementById('themeBtn');
-
-    // Initialize summary text and arrow
-    function updateSummary() {
-      const arrow = details.open ? '▲' : '▼';
-      summary.textContent = `${arrow} ${document.title}`;
-    }
-
-    details.addEventListener('toggle', updateSummary);
-    document.addEventListener('DOMContentLoaded', () => {
-      updateSummary();
-
-      // Restore theme
+    // Persist theme
+    window.onload = () => {
       const saved = localStorage.getItem('theme');
       if (saved) {
-        document.body.classList.replace('light-mode','dark-mode');
-        if (saved==='light-mode') document.body.classList.replace('dark-mode','light-mode');
-        themeBtn.textContent = saved==='dark-mode' ? '☀️' : '🌙';
+        document.body.classList.remove('light-mode','dark-mode');
+        document.body.classList.add(saved);
+        document.querySelector('.toggle-btn')
+          .textContent = saved==='dark-mode'?'🌞☀️':'🌙❄️';
       }
-    });
-
-    // Theme toggle
-    themeBtn.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode');
-      document.body.classList.toggle('light-mode');
-      themeBtn.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark-mode' : 'light-mode');
-    });
+    };
+    function toggleMode() {
+      const body = document.body;
+      const btn = document.querySelector('.toggle-btn');
+      const dark = body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+      btn.textContent = dark?'🌞☀️':'🌙❄️';
+      localStorage.setItem('theme', dark?'dark-mode':'light-mode');
+    }
   </script>
 </body>
 </html>
