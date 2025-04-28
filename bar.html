@@ -92,10 +92,6 @@
                 padding: 10px;
             }
 
-            nav.collapsed a {
-                display: block;
-            }
-
             .expand-btn {
                 display: inline-block;
                 font-size: 18px;
@@ -108,15 +104,8 @@
             }
         }
 
-        /* Vertical Navbar for Collapsed State */
-        .vertical-navbar {
-            display: block;
-            text-align: center;
-        }
-
         /* Title Style for Vertical */
         .vertical-navbar a {
-            display: block;
             font-size: 18px;
             padding: 10px 0;
             color: #ddd;
@@ -144,8 +133,6 @@
         // Check the user's theme preference on page load and save it
         window.onload = () => {
             const savedTheme = localStorage.getItem('theme');
-            console.log("Saved theme from localStorage: ", savedTheme); // Debugging
-
             if (savedTheme) {
                 document.body.classList.remove('light-mode', 'dark-mode');
                 document.body.classList.add(savedTheme);
@@ -171,10 +158,8 @@
             if (body.classList.contains('dark-mode')) {
                 button.innerHTML = '🌞☀️';  // Sun icon for dark mode
                 localStorage.setItem('theme', 'dark-mode');
-                console.log("Saved dark mode in localStorage");
             } else {
                 localStorage.setItem('theme', 'light-mode');
-                console.log("Saved light mode in localStorage");
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
         }
@@ -186,14 +171,19 @@
 
             navbar.classList.toggle('collapsed');
             
-            // If navbar is collapsed, show page title in a vertical list
             if (navbar.classList.contains('collapsed')) {
-                // Show page title in vertical format
-                navbar.classList.add('vertical-navbar');
+                // Show the page title in vertical list format
+                navbar.innerHTML = `<a href="#">${pageTitle}</a>`;
                 expandBtn.innerHTML = '▲'; // Change to "▲"
             } else {
-                // Revert to normal navbar with links
-                navbar.classList.remove('vertical-navbar');
+                // Revert to original navbar with links
+                navbar.innerHTML = `
+                    <a href="index.html">HomePage</a>
+                    <a href="Topic page.html">Html Part 1</a>
+                    <a href="Topic page2.html">Html Part 2</a>
+                    <a href="quiz.html">Html Quiz</a>
+                    <a href="References and resources page.html">References and resources</a>
+                `;
                 expandBtn.innerHTML = '▼'; // Change to "▼"
             }
         }
