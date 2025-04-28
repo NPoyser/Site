@@ -32,7 +32,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap; /* Allow navbar links to wrap for smaller screens */
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -106,6 +106,21 @@
                 font-weight: bold;
             }
         }
+
+        /* Vertical Navbar for Collapsed State */
+        .vertical-navbar {
+            display: block;
+            text-align: center;
+        }
+
+        /* Title Style for Vertical */
+        .vertical-navbar a {
+            display: block;
+            font-size: 18px;
+            padding: 10px 0;
+            color: #ddd;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="light-mode">
@@ -165,9 +180,21 @@
 
         function toggleNavbar() {
             const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('collapsed');
             const expandBtn = document.querySelector('.expand-btn');
-            expandBtn.innerHTML = navbar.classList.contains('collapsed') ? '▼' : '▲'; // Toggle between ▼ and ▲
+            const pageTitle = document.title; // Get the title of the current page
+
+            navbar.classList.toggle('collapsed');
+
+            // Change the navbar display and button
+            if (navbar.classList.contains('collapsed')) {
+                // Show page title in vertical format
+                navbar.classList.add('vertical-navbar');
+                expandBtn.innerHTML = '▲'; // Change to "▲"
+            } else {
+                // Revert to normal navbar with links
+                navbar.classList.remove('vertical-navbar');
+                expandBtn.innerHTML = '▼'; // Change to "▼"
+            }
         }
     </script>
 </body>
