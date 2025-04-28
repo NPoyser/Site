@@ -16,7 +16,12 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
 
 }
-
+#navbar-container {
+    width: 100vw; /* Full width of the viewport */
+    margin: 0; /* No automatic margin */
+    padding: 0; /* No automatic padding */
+    overflow-x: hidden; /* In case something overflows */
+}
 /* Navigation Bar */
 #navbar-container nav {
     background-color: #222;  /* Dark gray background */
