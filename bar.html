@@ -65,11 +65,46 @@
         .toggle-btn:hover {
             background-color: #555;
         }
+        /* For Collapsing Navbar on Mobile */
+        .collapsed {
+            display: none;
+        }
+
+        .expand-btn {
+            display: none;
+        }
+
+        /* Mobile-only styles */
+        @media (max-width: 768px) {
+            nav a {
+                display: none; /* Hide links initially */
+            }
+
+            nav.collapsed a {
+                display: block; /* Show links when navbar is expanded */
+            }
+
+            .expand-btn {
+                display: inline-block; /* Show the expand button */
+                font-size: 18px;
+                background: transparent;
+                border: none;
+                color: #ddd;
+                cursor: pointer;
+                padding: 5px 10px;
+                font-weight: bold;
+            }
+
+            .toggle-btn {
+                top: 10px;
+                right: 80px;
+            }
+        }
     </style>
 </head>
 <body class="light-mode">
 
-    <nav>
+    <nav id="navbar" class="collapsed">
         <a href="index.html">HomePage</a>
         <a href="Topic page.html">Html Part 1</a>
         <a href="Topic page2.html">Html Part 2</a>
@@ -114,6 +149,13 @@
                 console.log("Saved light mode in localStorage");
                 button.innerHTML = '🌙❄️';  // Moon icon for light mode
             }
+        
+        }
+        function toggleNavbar() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('collapsed');
+            const expandBtn = document.querySelector('.expand-btn');
+            expandBtn.innerHTML = navbar.classList.contains('collapsed') ? 'v' : '^';
         }
     </script>
 </body>
