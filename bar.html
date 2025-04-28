@@ -61,7 +61,6 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none;
         }
 
         .toggle-btn:hover {
@@ -86,7 +85,7 @@
                 display: flex; /* Show the navbar when it’s open */
             }
 
-            .toggle-btn {
+            .toggle-btn.mobile {
                 display: block; /* Show the button on mobile */
             }
         }
@@ -102,12 +101,14 @@
         <a href="References and resources page.html">References and resources</a>
     </nav>
 
-    <button class="toggle-btn" onclick="toggleNavbar()">&#8595;</button>
+    <!-- Toggle Button for Navbar (Mobile Only) -->
+    <button class="toggle-btn mobile" onclick="toggleNavbar()">&#8595;</button>
 
+    <!-- Toggle Button for Light/Dark Mode (Visible on both Desktop and Mobile) -->
     <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
 
     <script>
-        // Check the user's theme preference on page load and saves/remembers it
+        // Check the user's theme preference on page load and save it
         window.onload = () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
@@ -124,10 +125,11 @@
             }
         };
 
+        // Function to toggle the navbar visibility
         function toggleNavbar() {
             const navbar = document.getElementById('navbar');
             navbar.classList.toggle('open');
-            const downButton = document.querySelector('.toggle-btn');
+            const downButton = document.querySelector('.toggle-btn.mobile');
             // Change the button icon when the navbar opens and closes
             if (navbar.classList.contains('open')) {
                 downButton.innerHTML = '&#8593;'; // Up arrow when open
@@ -136,6 +138,7 @@
             }
         }
 
+        // Function to toggle light/dark mode
         function toggleMode() {
             const body = document.body;
             const button = document.querySelector('.toggle-btn');
