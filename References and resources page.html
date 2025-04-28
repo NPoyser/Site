@@ -61,12 +61,12 @@ fetch('bar.html')
     // Inject the fetched navbar HTML into the container
     document.getElementById('navbar-container').innerHTML = data;
 
-    // Load the navbar CSS if not already loaded
+    // Load the navbar CSS 
     if (!document.getElementById('navbar-style')) {
       const link = document.createElement('link');
       link.id = 'navbar-style'; // Give it an ID to avoid adding it multiple times
       link.rel = 'stylesheet';
-      link.href = 'navbar.css'; // This is your navbar style file
+      link.href = 'navbar.css'; // This is the navbar style file
       document.head.appendChild(link);
     }
 
