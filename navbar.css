@@ -20,7 +20,7 @@ body {
     width: 100vw; /* Full width of the viewport */
     margin: 0; /* No automatic margin */
     padding: 0; /* No automatic padding */
-    overflow-x: hidden; /* In case something overflows */
+    /*overflow-x: hidden; /* In case something overflows */
 }
 /* Navigation Bar */
 #navbar-container nav {
