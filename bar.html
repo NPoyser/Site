@@ -77,34 +77,35 @@
         /* Mobile-only styles */
         @media (max-width: 768px) {
             nav a {
-                display: none; /* Hide links initially */
-            }
-
-            nav.collapsed a {
-                display: block; /* Show links when navbar is expanded */
+                display: block; /* Stack navbar links vertically */
+                width: 100%;
+                text-align: center;
+                padding: 10px;
             }
 
             .expand-btn {
-                display: inline-block; /* Show the expand button */
-                font-size: 18px;
-                background: transparent;
+                display: block; /* Show the expand/collapse button on mobile */
+                background-color: transparent;
                 border: none;
+                font-size: 30px;
                 color: #ddd;
                 cursor: pointer;
-                padding: 5px 10px;
-                font-weight: bold;
+                margin: 10px auto;
             }
 
-            .toggle-btn {
-                top: 10px;
-                right: 80px;
+            nav a {
+                display: none; /* Initially hide navbar links */
+            }
+
+            .collapsed a {
+                display: block; /* Show navbar items when expanded */
             }
         }
     </style>
 </head>
 <body class="light-mode">
 
-    <nav id="navbar" class="collapsed">
+    <nav>
         <a href="index.html">HomePage</a>
         <a href="Topic page.html">Html Part 1</a>
         <a href="Topic page2.html">Html Part 2</a>
@@ -112,6 +113,7 @@
         <a href="References and resources page.html">References and resources</a>
 
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+        <button class="expand-btn" onclick="toggleNavbar()">▼</button>
     </nav>
     <script>
         // Check the user's theme preference on page load and saves/remembers it
@@ -152,10 +154,14 @@
         
         }
         function toggleNavbar() {
-            const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('collapsed');
+            const navbar = document.querySelector('nav');
+            navbar.classList.toggle('collapsed');  // Toggle the collapse class to hide/show navbar items
             const expandBtn = document.querySelector('.expand-btn');
-            expandBtn.innerHTML = navbar.classList.contains('collapsed') ? 'v' : '^';
+            if (navbar.classList.contains('collapsed')) {
+                expandBtn.innerHTML = '▲';  // Change icon to show expand
+            } else {
+                expandBtn.innerHTML = '▼';  // Change icon to show collapse
+            }
         }
     </script>
 </body>
