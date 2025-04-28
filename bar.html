@@ -1,192 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Navbar</title>
-    <style>
-        /* Light Mode Styles */
-        .light-mode {
-            background-color: #fff;
-            color: #222;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Navbar</title>
+  <style>
+    /* Light/Dark Mode */
+    .light-mode { background: #fff; color: #222; }
+    .dark-mode  { background: #222; color: #ddd; }
+    body { margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
 
-        /* Dark Mode Styles */
-        .dark-mode {
-            background-color: #222;
-            color: #ddd;
-        }
+    /* Navbar */
+    nav {
+      background: #222;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 12px 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a:hover {
+      background: #f4f4f4;
+      color: #222;
+      border-radius: 5px;
+    }
 
-        /* Remove default body margins and padding */
-        body {
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
+    /* Light/Dark toggle */
+    .toggle-btn {
+      position: absolute;
+      top: 10px; right: 20px;
+      background: #333; color: #fff;
+      border: none; padding: 8px 15px;
+      border-radius: 5px; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-btn:hover { background: #555; }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #222;
-            width: 100%;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            transition: all 0.3s ease;
-        }
+    /* Mobile expand button */
+    .expand-btn {
+      display: none;
+      position: absolute;
+      top: 10px; right: 60px;
+      background: transparent; border: none;
+      font-size: 20px; color: #ddd;
+      cursor: pointer;
+    }
 
-        nav a {
-            color: #ddd;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 12px 20px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Hover Effect */
-        nav a:hover {
-            background-color: #f4f4f4;
-            color: #222;
-            border-radius: 5px;
-        }
-
-        /* Toggle Button Style (Light/Dark) */
-        .toggle-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            padding: 8px 15px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .toggle-btn:hover {
-            background-color: #555;
-        }
-
-        /* For Collapsing Navbar on Mobile */
-        .collapsed {
-            display: none;
-        }
-
-        /* Expand Button for Mobile */
-        .expand-btn {
-            display: none;
-        }
-
-        /* Mobile-only styles */
-        @media (max-width: 768px) {
-            nav {
-                display: block;
-            }
-
-            nav a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 10px;
-            }
-
-            .expand-btn {
-                display: inline-block;
-                font-size: 18px;
-                background: transparent;
-                border: none;
-                color: #ddd;
-                cursor: pointer;
-                padding: 5px 10px;
-                font-weight: bold;
-            }
-        }
-
-        /* Title Style for Vertical */
-        .vertical-navbar a {
-            font-size: 18px;
-            padding: 10px 0;
-            color: #ddd;
-            font-weight: bold;
-        }
-    </style>
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; }
+      nav a { width: 100%; text-align: center; padding: 10px; }
+      .expand-btn { display: block; }
+    }
+  </style>
 </head>
 <body class="light-mode">
 
-    <nav id="navbar">
-        <a href="index.html">HomePage</a>
-        <a href="Topic page.html">Html Part 1</a>
-        <a href="Topic page2.html">Html Part 2</a>
-        <a href="quiz.html">Html Quiz</a>
-        <a href="References and resources page.html">References and resources</a>
-    </nav>
+  <nav id="navbar">
+    <a href="index.html">HomePage</a>
+    <a href="Topic page.html">Html Part 1</a>
+    <a href="Topic page2.html">Html Part 2</a>
+    <a href="quiz.html">Html Quiz</a>
+    <a href="References and resources page.html">References and resources</a>
+  </nav>
 
-    <!-- Toggle Button for Light/Dark Mode -->
-    <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
+  <!-- Expand button (mobile only) -->
+  <button class="expand-btn" onclick="toggleNavbar()">▼</button>
+  <!-- Light/Dark toggle (desktop & mobile) -->
+  <button class="toggle-btn" onclick="toggleMode()">🌙</button>
 
-    <!-- Expand Button for Mobile Navbar -->
-    <button class="expand-btn" onclick="toggleNavbar()">▼</button>
+  <script>
+    let originalNavHTML;
 
-    <script>
-        // Check the user's theme preference on page load and save it
-        window.onload = () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.body.classList.remove('light-mode', 'dark-mode');
-                document.body.classList.add(savedTheme);
+    window.addEventListener('DOMContentLoaded', () => {
+      // Save original navbar
+      originalNavHTML = document.getElementById('navbar').innerHTML;
 
-                // Update the button icon based on the saved theme
-                const button = document.querySelector('.toggle-btn');
-                if (savedTheme === 'dark-mode') {
-                    button.innerHTML = '🌞☀️';  // Sun icon for dark mode
-                } else {
-                    button.innerHTML = '🌙❄️';  // Moon icon for light mode
-                }
-            }
-        };
+      // Restore theme
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        document.body.classList.remove('light-mode','dark-mode');
+        document.body.classList.add(saved);
+        document.querySelector('.toggle-btn').textContent =
+          (saved === 'dark-mode' ? '☀️' : '🌙');
+      }
+    });
 
-        function toggleMode() {
-            const body = document.body;
-            const button = document.querySelector('.toggle-btn');
+    function toggleMode() {
+      const body = document.body;
+      const btn  = document.querySelector('.toggle-btn');
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+      const isDark = body.classList.contains('dark-mode');
+      btn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark-mode' : 'light-mode');
+    }
 
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
+    function toggleNavbar() {
+      const nav = document.getElementById('navbar');
+      const btn = document.querySelector('.expand-btn');
+      const title = document.title;
 
-            // Change the icon based on the current mode
-            if (body.classList.contains('dark-mode')) {
-                button.innerHTML = '🌞☀️';  // Sun icon for dark mode
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                localStorage.setItem('theme', 'light-mode');
-                button.innerHTML = '🌙❄️';  // Moon icon for light mode
-            }
-        }
-
-        function toggleNavbar() {
-            const navbar = document.getElementById('navbar');
-            const expandBtn = document.querySelector('.expand-btn');
-            const pageTitle = document.title; // Get the title of the current page
-
-            navbar.classList.toggle('collapsed');
-            
-            if (navbar.classList.contains('collapsed')) {
-                // Show the page title in vertical list format
-                navbar.innerHTML = `<a href="#">${pageTitle}</a>`;
-                expandBtn.innerHTML = '▲'; // Change to "▲"
-            } else {
-                // Revert to original navbar with links
-                navbar.innerHTML = `
-                    <a href="index.html">HomePage</a>
-                    <a href="Topic page.html">Html Part 1</a>
-                    <a href="Topic page2.html">Html Part 2</a>
-                    <a href="quiz.html">Html Quiz</a>
-                    <a href="References and resources page.html">References and resources</a>
-                `;
-                expandBtn.innerHTML = '▼'; // Change to "▼"
-            }
-        }
-    </script>
+      if (nav.innerHTML === originalNavHTML) {
+        // collapse to title
+        nav.innerHTML = `<a href="#">${title}</a>`;
+        btn.textContent = '▲';
+      } else {
+        // expand to full menu
+        nav.innerHTML = originalNavHTML;
+        btn.textContent = '▼';
+      }
+    }
+  </script>
 </body>
 </html>
