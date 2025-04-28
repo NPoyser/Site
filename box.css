@@ -6,4 +6,10 @@
     left: 20px;
     background-color: transparent;
     pointer-events: none;
+
+    /* Center the text inside */
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
+    text-align: center; /* optional: center multi-line text */
 }
