@@ -25,7 +25,7 @@
         }
 
         /* Navigation Bar */
-        nav {
+        #navbar-container nav {
             background-color: #222;  /* Dark gray background */
             width: 100%; /* Make it full width */
             padding: 10px 0;
@@ -34,7 +34,7 @@
             gap: 20px;
         }
 
-        nav a {
+        #navbar-container nav a {
             color: #ddd; /* Light gray text */
             text-decoration: none;
             font-size: 16px;
@@ -44,13 +44,13 @@
         }
 
         /* Hover Effect */
-        nav a:hover {
+        #navbar-container nav a:hover {
             background-color: #f4f4f4; /* Light gray hover background */
             color: #222; /* Dark text on hover */
             border-radius: 5px; /* Rounded hover effect */
         }
         /* Toggle Button Style */
-        .toggle-btn {
+        #navbar-container .toggle-btn {
             position: absolute; /* Position inside the navbar */
             top: 10px;
             right: 20px;
@@ -62,14 +62,14 @@
             cursor: pointer;
         }
 
-        .toggle-btn:hover {
+        #navbar-container .toggle-btn:hover {
             background-color: #555;
         }
 
         /* Mobile-only tweaks (all orientations) */
     @media (max-width: 768px) {
       /* Move toggle button over a bit */
-      .toggle-btn {
+      #navbar-container .toggle-btn {
         top: 10px;
         right: 80px;
       }
@@ -77,13 +77,13 @@
 
     /* Portrait on small screens: vertical stack (basically only when screen is vertical will this show)*/
     @media only screen and (max-width: 768px) and (orientation: portrait) {
-      nav {
+      #navbar-container nav {
         display: flex;           /* use flex */
         flex-direction: column;  /* stack vertically */
         align-items: center;
         gap: 10px;
       }
-      nav a {
+      #navbar-container nav a {
         display: block;
         width: 100%;
         text-align: center;
@@ -93,7 +93,7 @@
     </style>
 </head>
 <body class="light-mode">
-
+    <div id="navbar-container">
     <nav>
         <a href="index.html">HomePage</a>
         <a href="Topic page.html">Html Part 1</a>
@@ -104,6 +104,7 @@
         <button class="toggle-btn" onclick="toggleMode()">🌙❄️</button>
 
     </nav>
+    </div>
     <script>
         // Check the user's theme preference on page load and saves/remembers it
         window.onload = () => {
