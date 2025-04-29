@@ -161,13 +161,6 @@
               box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }        
 
-            #navbar-container h1 {
-              margin: 0;
-              padding: 0;
-              font-size: 24px;
-              color: black; /* make sure you can see it! */
-            }
-
             #quiz-container {
               width: 100%;
               max-width: 600px;
@@ -182,7 +175,6 @@
     </head>
     <body class="bg-gray-100 pt-16">
         <div id="navbar-container">
-        <h1>HTML Quiz</h1>   
         </div>
             <div id="quiz-container">
                 <br>
@@ -429,8 +421,24 @@ fetch('bar.html')
     }
   })
   .catch(error => console.error('Error loading navbar:', error));
+        
 </script>
-    
+    <script>
+        window.addEventListener('load', function() {
+  const navbar = document.getElementById('navbar-container');
+  const navbarHeight = navbar.offsetHeight;
+
+  // Set the top margin of the main content
+  const content = document.querySelector('main'); // Change 'main' if your content is in another element
+  content.style.marginTop = `${navbarHeight}px`;
+
+  // Adjust on window resize (for responsive changes)
+  window.addEventListener('resize', function() {
+    const navbarHeight = navbar.offsetHeight;
+    content.style.marginTop = `${navbarHeight}px`;
+  });
+});
+    </script>
 
     </body>
 </html>
