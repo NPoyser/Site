@@ -423,39 +423,7 @@ fetch('bar.html')
   .catch(error => console.error('Error loading navbar:', error));
         
 </script>
-    <script>
-        window.addEventListener('load', function() {
-  const navbar = document.getElementById('navbar-container');
-  const navbarHeight = navbar.offsetHeight;
-
-  // Set the top margin of the main content
-  const content = document.querySelector('main'); // Change 'main' if your content is in another element
-  content.style.marginTop = `${navbarHeight}px`;
-
-  // Adjust on window resize (for responsive changes)
-  window.addEventListener('resize', function() {
-    const navbarHeight = navbar.offsetHeight;
-    content.style.marginTop = `${navbarHeight}px`;
-  });
-});
-
-        // Adjust the margin for content based on navbar height
-function adjustNavbarHeight() {
-  // Get the height of the navbar 
-  const navbar = document.querySelector('#navbar-container'); // Use the correct selector 
-  const navbarHeight = navbar.offsetHeight; // Get the height of the navbar
-
-  // Apply the height to the margin-top of the main content
-  const content = document.querySelector('main'); // this targets content container
-  content.style.marginTop = `${navbarHeight}px`;
-}
-
-// Wait for the page to fully load
-window.addEventListener('load', adjustNavbarHeight);
-
-// Adjust on window resize
-window.addEventListener('resize', adjustNavbarHeight);
-    </script>
+    
 
     </body>
 </html>
