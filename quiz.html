@@ -147,13 +147,13 @@
             left: 0;
             z-index: 1000;
         }
-            #quiz-container {
+            /*#quiz-container {
     margin: 0 auto; /* center horizontally */
-    padding: 0 20px; /* small left-right padding for mobile safety */
-    max-width: 800px; /* control width so it doesn't stretch too big */
-    padding-top: 80px; /* <-- manually match navbar height for now */
-    box-sizing: border-box;
-}
+    /*padding: 0 20px; /* small left-right padding for mobile safety */
+    /*max-width: 800px; /* control width so it doesn't stretch too big */
+    /*padding-top: 80px; /* <-- manually match navbar height for now */
+    /*box-sizing: border-box;
+/*}*/
 
 
         </style>
@@ -405,17 +405,7 @@ fetch('bar.html')
   })
   .catch(error => console.error('Error loading navbar:', error));
 </script>
-    <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const navbar = document.getElementById('navbar-container');
-      const quizContainer = document.getElementById('quiz-container');
-  
-      if (navbar && quizContainer) {
-        const navbarHeight = navbar.offsetHeight;
-        quizContainer.style.paddingTop = navbarHeight + 'px';
-      }
-    });
-    </script>
+    
 
     </body>
 </html>
