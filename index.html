@@ -28,6 +28,20 @@
             p {
               margin-top:80px; /* Add some space between the header and paragraph */
             }
+            .section {
+              margin: 60px auto;
+              max-width: 1200px;
+              padding: 0 20px;
+            }
+
+            .question {
+              text-align: center;
+              font-size: 2rem;
+              margin-bottom: 30px;
+              color: #2c3e50;
+              text-shadow: 1px 1px 0 #fff;
+            }
+
             .grid-container {
               display: grid;
               grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
@@ -56,10 +70,16 @@
     <body>
         <div id="navbar-container"></div>
         <h1>HomePage</h1>
+        <div class="section">
+        <h2 class="question">World Wide Web</h2>
         <div class="grid-container">
         <p>
             The World Wide Web can be defined as an interconnected worldwide system that allows a user easy access to web pages, data, and documents from the internet. It uses protocols of HTML and HTTP.
         </p>
+        </div>
+        <div class="section">
+        <h2 class="question">Html, Css, etc.</h2>
+        <div class="grid-container">
         <p>
             Different web technologies, such as HTML (Hypertext Markup Language), HTTP (HyperText Transfer Protocol, which shows how data is transferred/communicated between clients and servers), CSS (Cascading Style Sheets), Javascript (a scripting language), Web Servers (software applications that process requests from the browser/clients and send responses back to clients), etc., play an important role in the World Wide Web.
         </p>
