@@ -10,7 +10,7 @@
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding: 100px 20px 40px; /* ⬅️ Notice the big top padding!! */
+  padding: 60px 20px 40px; /* ⬅️ Notice the big top padding!! */
   display: flex;
   flex-direction: column;
   align-items: center; /* center left/right */
@@ -151,16 +151,26 @@
         <style>
             #navbar-container {
   width: 100%;
-  background: #fff;
+  background: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 80px;
+  height: 60px; /* consistent height */
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: little shadow under navbar */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Fix any text inside navbar */
+#navbar-container h1, 
+#navbar-container h2, 
+#navbar-container h3, 
+#navbar-container p {
+  margin: 0; 
+  padding: 0;
+  font-size: 24px; /* Example size */
 }
 
 #quiz-container {
