@@ -156,21 +156,19 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 60px; /* consistent height */
+  padding: 10px 20px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Fix any text inside navbar */
-#navbar-container h1, 
-#navbar-container h2, 
-#navbar-container h3, 
-#navbar-container p {
-  margin: 0; 
+#navbar-container h1 {
+  margin: 0;
   padding: 0;
-  font-size: 24px; /* Example size */
+  font-size: 24px;
+  color: black; /* make sure you can see it! */
 }
 
 #quiz-container {
