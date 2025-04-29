@@ -134,13 +134,18 @@
             .question {
               text-align: center; /* Center the questions */
             }
+
+            #quiz-container {
+                padding-top: 80px; /* Or whatever the navbar height is */
+            }
         </style>
     </head>
     <body>
         <div id="navbar-container"></div>
         <body>
+            <div id="quiz-container">
           <h1>HTML Quiz</h1>
-        
+
           <form id="quizForm">
             <div class="question" data-q="q1">
               <p>1. What does HTML stand for?</p>
@@ -184,7 +189,8 @@
                 <div id="answers" style="display:none; text-align:center; margin-top:20px; font-size:1.1rem;"></div>  
             </div>
           </form>
-        
+
+            </div>
           <script>
             const correctAnswers = {
               q1: "b",
