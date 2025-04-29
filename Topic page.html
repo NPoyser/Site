@@ -20,6 +20,13 @@
               margin: 0;
               font-family: Arial, sans-serif;
         }
+        .content {
+            width: 100%;
+            max-width: 800px;   /* Optional: limit line length for readability */
+            padding: 0 20px;    /* Horizontal padding */
+            box-sizing: border-box;
+            text-align: left;
+        }
     
         h1 {
           margin-top: 60px;  /* Remove top margin to keep the header at the top */
@@ -33,6 +40,7 @@
     <body>
         <div id="navbar-container"></div>
         <h1>Html Part 1</h1>
+        <div class="content">
         <p>
             HTML is used in creating personal websites, portfolio websites, and business websites; that become available to the people/users of the World Wide Web. The use of HTML to create these different websites allows accessibility to the internet users. It allows them to be active on the WWW from any location, searching on different websites for topics, info on businesses, shopping, and researching data. In all, HTML allows the WWW to expand since being created. HTML is the user's interface to create information on the WWW. Without HTML’s basic foundation, there would be no World Wide Web.
         </p>
@@ -42,6 +50,7 @@
         <a href="Topic page2.html" target="_blank">Next</a>
         <br>
         <br>
+        </div>
         <label for="toc">Table of contents:</label>
     <select id="toc" onchange="window.location = this.value;">
         <option value="#">Select a page</option>
