@@ -43,49 +43,46 @@
             }
 
             .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 20px;
+            }
 
-.grid-container p {
-  background-color: #ffffff;  /* light background for light mode */
-  color: #333;                /* dark text for light mode */
-  border-left: 6px solid #3498db;
-  padding: 20px;
-  margin: 0;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
+            .grid-container p {
+              background-color: #ffffff;  /* light background for light mode */
+              color: #333;                /* dark text for light mode */
+              border-left: 6px solid #3498db;
+              padding: 20px;
+              margin: 0;
+              border-radius: 10px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+              transition: transform 0.2s ease, background-color 0.3s ease;
+            }
 
-.grid-container p:hover {
-  transform: translateY(-3px);
-  background-color: #ecf9ff;
-}
+            .grid-container p:hover {
+              transform: translateY(-3px);
+              background-color: #ecf9ff;
+            }
 
-/* Dark Mode styling */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1e1e1e;  /* dark background */
-    color: #ddd;                /* lighter text */
-  }
+            /* Dark Mode styling */
+            @media (prefers-color-scheme: dark) {
+              body {
+                background-color: #1e1e1e;  /* dark background */
+                color: #ddd;                /* lighter text */
+              }
 
-  .question {
-    color: #ecf0f1;              /* light color for title/question */
-  }
 
-  .grid-container p {
-    background-color: #2c3e50;   /* darker background for paragraphs */
-    color: #ecf0f1;               /* lighter text for dark mode */
-    border-left: 6px solid #3498db; /* accent color stays the same */
-  }
+              .grid-container p {
+                background-color: #2c3e50;   /* darker background for paragraphs */
+                color: #ecf0f1;               /* lighter text for dark mode */
+                border-left: 6px solid #3498db; /* accent color stays the same */
+              }
 
-  .grid-container p:hover {
-    transform: translateY(-3px);
-    background-color: #34495e;   /* slightly lighter on hover */
-  }
-}
+              .grid-container p:hover {
+                transform: translateY(-3px);
+                background-color: #34495e;   /* slightly lighter on hover */
+              }
+        }
     </style>
     </head>
     <body>
