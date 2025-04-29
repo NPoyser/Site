@@ -141,26 +141,26 @@
         <style>
             #navbar-container {
             width: 100%;
-            background: #fff; /* or any visible color */
+            background: #fff;
             position: fixed;
             top: 0;
             left: 0;
-            /*z-index: 1000;*/
-                height: 80px;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-            /*#quiz-container {
-    margin: 0 auto; /* center horizontally */
-    /*padding: 0 20px; /* small left-right padding for mobile safety */
-    /*max-width: 800px; /* control width so it doesn't stretch too big */
-    /*padding-top: 80px; /* <-- manually match navbar height for now */
-    /*box-sizing: border-box;
-/*}*/
+           #spacer {
+    height: 80px; /* Same as navbar height */
+}
 
 
         </style>
     </head>
     <body>
         <div id="navbar-container"></div>
+        <div id="spacer"></div>
         <body>
             <div id="quiz-container">
           <h1>HTML Quiz</h1>
