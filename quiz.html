@@ -135,9 +135,7 @@
               text-align: center; /* Center the questions */
             }
 
-            #quiz-container {
-                padding-top: 0; /* Or whatever the navbar height is (JavaScript will fix this automatically)*/
-                width: 100%;
+          
             }
         </style>
         <style>
@@ -149,6 +147,14 @@
             left: 0;
             z-index: 1000;
         }
+            #quiz-container {
+    margin: 0 auto; /* center horizontally */
+    padding: 0 20px; /* small left-right padding for mobile safety */
+    max-width: 800px; /* control width so it doesn't stretch too big */
+    padding-top: 80px; /* <-- manually match navbar height for now */
+    box-sizing: border-box;
+}
+
 
         </style>
     </head>
