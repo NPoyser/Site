@@ -22,6 +22,12 @@
               font-family: Arial, sans-serif;
                 padding: 0 20px;
             }
+            .content {
+              width: 100%;
+              max-width: 800px;   /* limit line length for readability */
+              padding: 0 20px;    /* Horizontal padding */
+              box-sizing: border-box;
+            }
     
             h1 {
                  margin-top: 60px;  /* Remove top margin to keep the header at the top */
@@ -35,6 +41,8 @@
     <body>
         <div id="navbar-container"></div>
         <h1>Html Part 2</h1>
+
+        <div class="content"> 
         <p>
             HTML was developed in the late 1990s by Tim Berners-Lee. HTML stands for Hypertext Markup Language, which is used to create web pages. This scripting language sends signals that allow a web browser to display text, images, audio, and forms of different multimedia on a webpage. HTML is useful because it serves as a foundation that holds the content and design elements together. Allowing a web page to be structured and not be jumbled together. HTML uses elements or tags which allow contents to be structured and formatted on a webpage, thus allowing accessible use for internet users. These tags are interpreted by the web browser and are displayed in a format that is readable to the user.
         </p>
@@ -52,6 +60,7 @@ and science of creating the user-facing part of a website or web app. It's what 
         <a href="References and resources page.html" target="_blank">References and resources</a>
         <br>
         <br>
+        </div>
         <label for="toc">Table of contents:</label>
     <select id="toc" onchange="window.location = this.value;">
         <option value="#">Select a page</option>
