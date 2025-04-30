@@ -13,6 +13,7 @@
             }
         </style>
         <style>
+            <style>
             body {
               display: flex;
               flex-direction: column;  /* Stack the content vertically */
@@ -20,22 +21,83 @@
               height: 100vh;           /* Full viewport height */
               margin: 0;
               font-family: Arial, sans-serif;
-                padding: 0 20px;
-            }
-            .content {
-              width: 100%;
-              max-width: 800px;   /* limit line length for readability */
-              padding: 0 20px;    /* Horizontal padding */
-              box-sizing: border-box;
             }
     
             h1 {
-                 margin-top: 60px;  /* Remove top margin to keep the header at the top */
+              margin-top: 60px;  /* Remove top margin to keep the header at the top */
             }
     
             p {
-                margin-top:70px; /* Add some space between the header and paragraph */
+              margin-top:80px; /* Add some space between the header and paragraph */
             }
+            .content {
+              width: 100%;
+              max-width: 800px;   /* Optional: limit line length for readability */
+              padding: 0 20px;    /* Horizontal padding */
+              box-sizing: border-box;
+              text-align: center;
+            }
+            .section {
+              margin: 60px auto;
+              max-width: 1200px;
+              padding: 0 20px;
+            }
+
+            .question {
+              text-align: center;
+              font-size: 2rem;
+              margin-bottom: 30px;
+              color: #2c3e50;
+              text-shadow: 1px 1px 0 #fff;
+            }
+
+            .grid-container {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 20px;
+              justify-items: center;  /* Align all items dead center horizontally */
+              align-items: start;     /* aligns tops of all grid items */
+            }
+
+            .grid-container p {
+              background-color: #ffffff;  /* light background for light mode */
+              color: #333;                /* dark text for light mode */
+              border-left: 6px solid #3498db;
+              padding: 20px;
+              margin: 0;
+              border-radius: 10px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+              transition: transform 0.2s ease, background-color 0.3s ease;
+              box-sizing: border-box;
+              width: 100%;
+              word-wrap: break-word;
+              overflow-wrap: break-word;
+                /* New: ensure alignment and consistent sizing */
+              box-sizing: border-box;
+              width: 100%;
+            }
+
+            .grid-container p:hover {
+              transform: translateY(-3px);
+              background-color: #ecf9ff;
+            }
+
+            /* Dark Mode styling */
+            @media (prefers-color-scheme: dark) {
+              
+
+
+              .grid-container p {
+                background-color: #2c3e50;   /* darker background for paragraphs */
+                color: #ecf0f1;               /* lighter text for dark mode */
+                border-left: 6px solid #3498db; /* accent color stays the same */
+              }
+
+              .grid-container p:hover {
+                transform: translateY(-3px);
+                background-color: #34495e;   /* slightly lighter on hover */
+              }
+        }
     </style>
     </head>
     <body>
