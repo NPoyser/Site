@@ -89,44 +89,36 @@
               transform: translateY(-3px);
               background-color: #ecf9ff;
             }
-            .row-box-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px; /* space between boxes */
-  margin-top: 40px;
-  padding: 0 10px;
-}
+           
 
-.sentence-box {
-  background-color: #ffffff;
-  color: #333;
-  border: 2px solid #3498db;
-  border-radius: 8px;
-  padding: 10px 20px;
-  text-align: center;
-  font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex: 0 1 auto; /* allow shrinking and wrapping */
-}
-            .sentence-box:hover {
-  background-color: #ecf9ff;         /* Light hover effect */
-  transform: translateY(-3px);       /* Slight lift */
-  transition: 0.2s ease;
+            .sentence-box {
+              background-color: #ffffff;
+              color: #333;
+              border-left: 6px solid #3498db;
+              padding: 16px;
+              border-radius: 10px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+              transition: transform 0.2s ease, background-color 0.3s ease;
+              text-align: left;
+              word-wrap: break-word;
+            }
+.sentence-box:hover {
+  transform: translateY(-3px);
+  background-color: #ecf9ff;
 }
             
 
             /* Dark Mode styling */
             @media (prefers-color-scheme: dark) {
               
-.sentence-box {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    border-color: #2980b9;
-  }
+                .sentence-box {
+                 background-color: #2c3e50;
+                 color: #ecf0f1;
+                 border-color: #2980b9;
+                }
                 .sentence-box:hover {
-    background-color: #34495e;       /* Slightly lighter than base in dark */
-  }
+                 background-color: #34495e;       /* Slightly lighter than base in dark */
+                }
 
               .grid-container p {
                 background-color: #2c3e50;   /* darker background for paragraphs */
@@ -140,16 +132,6 @@
               .grid-container p:hover {
                 transform: translateY(-3px);
                 background-color: #34495e;   /* slightly lighter on hover */
-              }
-
-              .boxy-text {
-                background-color: #2c3e50;
-                color: #ecf0f1;
-                border-left: 6px solid #3498db;
-              }
-
-              .boxy-text:hover {
-                background-color: #34495e;
               }
             }
             @media (max-width: 600px) {
@@ -176,9 +158,9 @@
         <div class="section">
         <h2 class="question">References</h2>
         <div class="grid-container">
-        <span class="boxy-text">Laurinavicius, Tomas. “What is html?” <br><i>Webflow,</i><br> 29 August 2022, <br><a href="https://webflow.com/blog/what-is-html">https://webflow.com/blog/what-is-html.<br></a> Accessed 26 January 2025.<i></i></span>
+        <div class="grid-container">Laurinavicius, Tomas. “What is html?” <br><i>Webflow,</i><br> 29 August 2022, <br><a href="https://webflow.com/blog/what-is-html">https://webflow.com/blog/what-is-html.<br></a> Accessed 26 January 2025.<i></i></div>
         <br>
-        <span class="boxy-text">Zheng, J. (2025, January 12). <br><i>Introduction to Web Technology.</i> <br><a href="https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology">https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology</a> <br><i>Edocr.com,</i> <i>12 January 2025, (slide 12)</i></span>
+        <div class="grid-container">Zheng, J. (2025, January 12). <br><i>Introduction to Web Technology.</i> <br><a href="https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology">https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology</a> <br><i>Edocr.com,</i> <i>12 January 2025, (slide 12)</i></div>
         <br>
         </div>
         <div class="section">
