@@ -35,7 +35,7 @@
             }
             .content {
               width: 100%;
-              max-width: 800px;   /* Optional: limit line length for readability */
+              max-width: 800px;   /* Limit line length for readability */
               padding: 0 20px;    /* Horizontal padding */
               box-sizing: border-box;
               text-align: center;
@@ -89,7 +89,13 @@
               transform: translateY(-3px);
               background-color: #ecf9ff;
             }
-           
+             .sentence-row {
+              display: flex;
+              gap: 20px; /* Space between items */
+              justify-content: center; /* Center align the items horizontally */
+              flex-wrap: wrap; /* Allow wrapping if there's not enough space */
+              margin-top: 30px;
+            }            
 
             .sentence-box {
               background-color: #ffffff;
@@ -104,6 +110,10 @@
             .sentence-box:hover {
               transform: translateY(-3px);
               background-color: #ecf9ff;
+            }
+            .sentence-box a {
+              color: #1e90ff;
+              text-decoration: underline;
             }
             
 
@@ -156,7 +166,7 @@
         <div class="content">
         <div class="section">
         <h2 class="question">References</h2>
-        <div class="grid-container">
+        <div class="sentence-row">
         <div class="sentence-box">Laurinavicius, Tomas. “What is html?” <br><i>Webflow,</i><br> 29 August 2022, <br><a href="https://webflow.com/blog/what-is-html">https://webflow.com/blog/what-is-html.<br></a> Accessed 26 January 2025.<i></i></div>
         <br>
         <div class="sentence-box">Zheng, J. (2025, January 12). <br><i>Introduction to Web Technology.</i> <br><a href="https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology">https://www.edocr.com/v/qezldpd2/jgzheng/introduction-to-web-technology</a> <br><i>Edocr.com,</i> <i>12 January 2025, (slide 12)</i></div>
