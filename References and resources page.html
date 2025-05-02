@@ -108,6 +108,10 @@
               word-wrap: break-word;
               white-space: normal; /* Ensure text wraps normally */
               box-sizing: border-box; /* Includes padding in width/height */
+
+              width: 100%;
+              max-width: 320px;
+              flex: 1 1 280px; /* Allows it to shrink and grow nicely */
             }
             .sentence-box:hover {
               transform: translateY(-3px);
@@ -146,7 +150,10 @@
               }
             }
             @media (max-width: 600px) {
-
+              .sentence-box {
+                padding: 12px;
+                max-width: 100%;
+              }
             
               .content img {
                 width: 100%;
@@ -180,7 +187,7 @@
         <div class="section">
         <h2 class="question">Resources</h2>
         <div class="grid-container">
-        <p>If you are curious on how to do it on your own, and want a step by step tutorial. Click here: <br><a href="https://www.youtube.com/watch?v=PlxWf493en4">Youtube Html Intro Tutorial</a> <br><br>Here is another video to watch that can help with makeing a website: (CSS)<br> <a href="https://www.youtube.com/watch?v=DJq6R2b0FoE">Flexbox and Grid Basics</a></p>
+        <p>If you are curious on how to do it on your own, and want a step by step tutorial. Click here: <br><a href="https://www.youtube.com/watch?v=PlxWf493en4">Youtube Html Intro Tutorial</a> <br><br>Here is another video to watch that can help with making a website: (CSS)<br> <a href="https://www.youtube.com/watch?v=DJq6R2b0FoE">Flexbox and Grid Basics</a></p>
         </div>
         <div class="section">
         <div class="grid-container">
