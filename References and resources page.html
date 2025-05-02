@@ -109,9 +109,8 @@
               white-space: normal; /* Ensure text wraps normally */
               box-sizing: border-box; /* Includes padding in width/height */
 
-              width: 100%;
-              max-width: 320px;
-              flex: 1 1 280px; /* Allows it to shrink and grow nicely */
+              width: 300px;
+              flex: 0 0 auto;
             }
             .sentence-box:hover {
               transform: translateY(-3px);
@@ -151,8 +150,8 @@
             }
             @media (max-width: 600px) {
               .sentence-box {
-                padding: 12px;
-                max-width: 100%;
+                width: 100%;      /* Take full width on small screens */
+                max-width: 100%;  /* No horizontal overflow */
               }
             
               .content img {
